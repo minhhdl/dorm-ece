@@ -24,7 +24,7 @@ app.prepare()
     server.use(bodyParser.urlencoded({ extended: false }));
     server.use(cookieParser());
 
-    mongoose.connect('mongodb://dorm-ece:dormece2019@ds019746.mlab.com:19746/heroku_8wk4hc14');
+    mongoose.connect('mongodb://dorm:dorm2019@ds123361.mlab.com:23361/heroku_258nvtfj');
     // mongoose.connect('mongodb://localhost/dorm');
     initData();
 
