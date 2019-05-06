@@ -6,9 +6,9 @@ const DormRegistration = require('../models/dorm-registration');
 
 const register = async (req, res) => {
   try {
-    const { ...user } = req.body;
+    const { password, ...user } = req.body;
     if (!user.role) user.role = 'student';
-    
+    user.password = await bcrypt.hash(password, 10);
     const newUser = new User(user);
     await newUser.save();
 
@@ -36,6 +36,7 @@ const login = async (req, res) => {
         message: 'User not found',
       })
     }
+    console.log(user)
     const isMatchPass = await bcrypt.compare(password, user.password);
     if (isMatchPass) {
       user = user.toJSON();
@@ -55,6 +56,7 @@ const login = async (req, res) => {
     return res.status(400).json({
       status: 400,
       message: 'Can not login',
+      stack: e,
     })
   }
 }
