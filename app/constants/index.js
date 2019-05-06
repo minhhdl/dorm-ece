@@ -1,4 +1,4 @@
-export const API_URL = process.env.NODE_ENV === 'production' ? 'https://dorm-ece.herokuapp.com/api' : 'http://localhost:5000/api';
+export const API_URL = '/api';
 export const S3_BUCKET = 'pmh-souvenir';
 export const S3_URL = 'https://pmh-souvenir.s3.ap-southeast-1.amazonaws.com/';
 export const TOKEN_INVALID_CODE = 'INVALID_TOKEN';

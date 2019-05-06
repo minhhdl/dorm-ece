@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "name": "downyshoes",
+  "name": "dorm-ece",
   "builds": [
       { "src": "next.config.js", "use": "@now/next" }
   ]

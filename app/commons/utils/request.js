@@ -28,6 +28,10 @@ function handleRes(response) {
 
 function handleError(error) {
   Toastr.error('Something went wrong.', 'An Error Occurred!');
+  console.log(error.response)
+  if(error.response && error.response.status === 401 && error.response.data.message === 'Invalid auth token provided.') {
+    window.location.href = '/app/login';
+  }
   throw error;
 }
 
