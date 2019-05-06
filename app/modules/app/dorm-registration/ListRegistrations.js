@@ -246,6 +246,18 @@ class ListUsers extends React.Component {
                     </div>
                   ]);
                 })()}
+                <div className={s.field}>
+                  <span className={s.fieldName}>Tài khoản ngân hàng</span>
+                  <span>{selected.bank_account_number}</span>
+                </div>
+                <div className={s.field}>
+                  <span className={s.fieldName}>Tên chủ thẻ</span>
+                  <span>{selected.bank_account_name}</span>
+                </div>
+                <div className={s.imageField}>
+                  <span className={s.fieldName}>Ảnh xác minh</span>
+                  {selected.image ? <img src={selected.image} /> : <span>-</span>}
+                </div>
               </DialogContent>
               <DialogActions>
                 {!selected.status !== 'accepted' && (

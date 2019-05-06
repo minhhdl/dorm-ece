@@ -161,15 +161,15 @@ class RegisterDorm extends React.Component {
                 <Col md={6}>
                   <TextField 
                     label={"Tài khoản ngân hàng"}
-                    onChange={(e) => this.handleChange("bankAccountName", e.target.value)}
-                    value={bankAccountName}
+                    onChange={(e) => this.handleChange("bankAccountNumber", e.target.value)}
+                    value={bankAccountNumber}
                   />
                 </Col>
                 <Col md={6}>
                   <TextField 
                     label={"Tên chủ thẻ"}
-                    onChange={(e) => this.handleChange("bankAccountNumber", e.target.value)}
-                    value={bankAccountNumber}
+                    onChange={(e) => this.handleChange("bankAccountName", e.target.value)}
+                    value={bankAccountName}
                   />
                 </Col>
               </Row>
