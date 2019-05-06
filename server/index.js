@@ -24,8 +24,8 @@ app.prepare()
     server.use(bodyParser.urlencoded({ extended: false }));
     server.use(cookieParser());
 
-    // mongoose.connect('mongodb://downyshoes:downyshoes2019@ds147451.mlab.com:47451/heroku_tbt7sfj0');
-    mongoose.connect('mongodb://localhost/dorm');
+    mongoose.connect('mongodb://downyshoes:downyshoes2019@ds147451.mlab.com:47451/heroku_tbt7sfj0');
+    // mongoose.connect('mongodb://localhost/dorm');
     initData();
 
     server.use('/api', api);
