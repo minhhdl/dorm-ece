@@ -1,0 +1,22 @@
+@import "../variables";
+
+.footer {
+  border-top: 1px solid rgba(0, 76, 126, 0.19);
+  padding: 50px 0;
+  
+  &-link {
+    display: block;
+    text-decoration: none;
+    font-size: 16px;
+    color: #a3a3a3;
+    line-height: 2.31;
+  }
+}
+
+@media screen and (max-width: $screen-max-phone-sm) {
+  .footer {
+    &-link {
+      text-align: center;
+    }
+  }
+}

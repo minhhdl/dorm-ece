@@ -1,0 +1,38 @@
+@import '../../commons/uikit/components/variables';
+
+.auth-page {
+  min-height: 100vh;
+  padding: 100px 30px;
+}
+.auth-block {
+  width: 640px;
+  margin: 0 auto;
+  border-radius: 5px;
+  background: rgba(0,0,0,.55);
+  color: #fff;
+  padding: 32px;
+
+  &-title {
+    text-align: center;
+    color: $color-main;
+    margin-bottom: 25px;
+  }
+
+  .form-section {
+    margin-bottom: 30px;
+    &-title {
+      font-size: 16px;
+      font-weight: 500;
+      display: inline-block;
+      margin-bottom: 15px;
+    }
+  }
+
+  .radioGroup {
+    @include flex(flex, row, flex-start, center);
+    margin-bottom: 20px;
+    .radio {
+
+    }
+  }
+}

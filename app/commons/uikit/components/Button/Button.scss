@@ -1,0 +1,185 @@
+@import "../variables";
+
+@mixin disabled(){
+  &:disabled {
+    background-color: lighten($color: $color-inactive-2, $amount: 5%);
+    cursor: auto;
+
+    &:hover {
+      box-shadow: none;
+    }
+  }
+}
+
+.root {
+  width: 100%;
+  max-width: 192px;
+  height: 46px;
+  
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+
+  text-transform: capitalize;
+  background-color: $color-main;
+  color: #ffffff;
+  font-family: $font-family-secondary;
+  font-size: 16px;
+  font-weight: 600;
+
+  border: none;
+  cursor: pointer;
+
+  transition: box-shadow .2s ease, background-color .2s ease;
+
+  @include disabled();
+
+  &:hover {
+    box-shadow: 0px 10px 30px -5px rgba(0, 0, 0, .3);
+  }
+
+  &:active {
+    background-color: darken($color-main, 10%);
+  }
+
+  &:active, &:focus {
+    outline: none;
+  }
+
+  i {
+    font-size: 22px;
+  }
+
+  &.icon-left i {
+    margin-right: 10px;
+  }
+  &.icon-right i {
+    margin-left: 10px;
+  }
+
+  &.auto-width {
+    width: auto;
+    max-width: none;
+  }
+  &.full-width {
+    width: 100%;
+    max-width: none;
+  }
+}
+
+.button-color-header {
+  background-color: $color-header;
+
+  @include disabled();
+
+  &:active {
+    background-color: darken($color-header, 10%);
+  }
+}
+
+.button-dark-grey {
+  background-color: $color-text;
+
+  @include disabled();
+
+  &:active {
+    background-color: darken($color-text, 10%);
+  }
+}
+
+.button-light-grey {
+  background-color: $color-inactive-2;
+
+  @include disabled();
+
+  &:active {
+    background-color: darken($color-inactive-2, 10%);
+  }
+}
+.button-color-white {
+  background-color: #fff;
+  color: #353535;
+
+  @include disabled();
+
+  &:active {
+    background-color: darken(#fff, 10%);
+  }
+}
+
+.button-color-danger {
+  background-color: $color-error;
+
+  @include disabled();
+
+  &:active {
+    background-color: darken($color-error, 20%);
+  }
+}
+
+.button-clear {
+  background-color: transparent;
+  color: $color-main;
+
+  &.button-dark-grey {
+    color: $color-text;
+  }
+  &.button-light-grey {
+    color: $color-inactive-2;
+  }
+  &.button-color-header {
+    color: $color-header;
+  }
+
+  &:hover {
+    box-shadow: none;
+    background-color: rgba($color-text, 0.075);
+  }
+  &:active {
+    background-color: rgba($color-text, 0.15);
+  }
+  &:disabled {
+    color: $color-inactive-2;
+    background-color: transparent;
+  }
+}
+
+.button-outline {
+  background-color: transparent;
+  color: $color-main;
+  border: 1px solid $color-main;
+
+  &.button-dark-grey {
+    color: $color-text;
+    border-color: $color-text;
+
+    &:active {
+      background-color: rgba($color-text, 0.15);
+    }
+  }
+  &.button-light-grey {
+    color: $color-inactive-2;
+    border-color: $color-inactive-2;
+
+    &:active {
+      background-color: rgba($color-inactive-2, 0.15);
+    }
+  }
+  &.button-color-danger {
+    color: $color-error;
+    border-color: $color-error;
+
+    &:active {
+      background-color: rgba($color-error, 0.15);
+    }
+  }
+
+  &:active {
+    background-color: rgba($color-main, 0.15);
+  }
+  &:disabled {
+    border-color: $color-inactive-2;
+    color: $color-inactive-2;
+    background-color: transparent;
+  }
+}

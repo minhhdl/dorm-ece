@@ -1,0 +1,78 @@
+@import "../variables";
+
+.sidebar {
+  background-color: rgba(0,0,0,.75);
+  position: fixed;
+  top: $appbar-height;
+  bottom: 0;
+  left: 0;
+  width: 220px;
+  overflow: hidden;
+  @include transition(width, .3s);
+  
+  &-link {
+    @include flex(flex, row, flex-start, center);
+    text-decoration: none;
+    font-size: 16px;
+    color: #fff;
+    padding: 10px 15px;
+    border-right: 5px solid transparent;
+    @include transition(all, .3s);
+    overflow: hidden;
+    box-sizing: border-box;
+
+    i {
+      margin-right: 15px;
+    }
+
+    &:hover, &.active {
+      background-color: rgba(0,0,0,.2);
+      border-right-color: $color-main;
+    }
+    &.active {
+      color: $color-main;
+    }
+  }
+
+  .sidebar-submenus {
+    height: 0;
+    opacity: 0;
+    transition: all .2s ease-in-out;
+
+    .sidebar-link {
+      border-right: none;
+    }
+
+    &.active {
+      opacity: 1;
+      height: auto;
+    }
+  }
+
+  ul, li {
+    margin: 0;
+    padding: 0;
+  }
+
+  &.collapsed {
+    width: 54px;
+    .sidebar-link {
+      border: none;
+      
+    }
+  }
+}
+
+@media screen and (max-width: $screen-max-phone) {
+  .sidebar {
+    &.collapsed {
+      width: 0;
+    }
+  }
+}
+
+@media screen and (max-width: $screen-max-phone-sm) {
+  .sidebar {
+    top: $appbar-height-sm;
+  }
+}

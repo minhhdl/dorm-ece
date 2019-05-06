@@ -1,0 +1,131 @@
+@import '../variables.scss';
+
+.wrapper {
+  margin-bottom: 20px;
+}
+.photoUploader {
+  // @include flex-center();
+  width: 100%;
+  height: 180px;
+  margin-bottom: 15px;
+
+  .input {
+    display: none;
+  }
+}
+
+.image-previewer {
+  flex-wrap: wrap;
+  display: flex;
+}
+.imgContainer {
+  width: 100px;
+  height: 100px;
+  margin-right: 15px;
+  margin-bottom: 15px;
+  position: relative;
+  background: url('/img/transparent-bg.png') center no-repeat;
+  background-size: cover;
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+  }
+}
+
+.imgCover {
+  position: absolute;
+  top: 0px;
+  left: 0;
+  width: inherit;
+  height: inherit;
+  border: 3px solid $color-main;
+  box-sizing: border-box;
+}
+
+.imgHover {
+  position: absolute;
+  display: flex;
+  opacity: 0;
+  visibility: hidden;
+  top: 0px;
+  width: inherit;
+  height: inherit;
+  text-align: center;
+  align-items: center;
+  background-color: rgba(0, 0, 0, 0.64);
+  @include transition(opacity, .3s);
+
+  .remove-img {
+    position: absolute;
+    top: 0;
+    right: 0;
+    padding: 5px; 
+    height: auto;
+    color: #fff;
+  }
+
+  label {
+    padding: 0 5px;
+    i {
+      margin-right: 5px;
+      font-size: 18px;
+      width: 18px;
+    }
+  }
+}
+
+.imgContainer:hover .imgHover {
+  visibility: visible;
+  opacity: 1 !important;
+}
+
+.lablePhotoUploader {
+  @include flex-center();
+  
+  font-size: 16px;
+  flex-direction: column;
+  width: inherit;
+  height: inherit;
+  // background-color: rgba(0, 0, 0, 0.2);
+  border: dashed 1px #fff;
+  color: #fff;
+  cursor: pointer;
+  border-radius: 10px;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+  z-index: 1;
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+  }
+}
+
+.preview {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  z-index: -1;
+
+  &:before {
+    background-color: rgba(0, 0, 0, 0.2);
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+  }
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+}

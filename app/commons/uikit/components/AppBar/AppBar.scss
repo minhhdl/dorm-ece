@@ -1,0 +1,104 @@
+@import "../variables";
+
+.header {
+  background-color: rgba(0,0,0,.85);
+  box-shadow: 2px 0 3px rgba(0,0,0,.5);
+  position: fixed;
+  z-index: $z-index-1;
+  top: 0;
+  left: 0;
+  width: 100%;
+}
+.root {
+  height: $appbar-height;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  .logo-section {
+    width: 220px;
+    height: inherit;
+    @include flex-center();
+    font-size: 36px;
+    color: $color-main;
+    letter-spacing: 5px;
+    font-weight: 300;
+  }
+
+  .collapseButton {
+    color: #fff;
+  }
+
+  .nav-section {
+    height: inherit;
+    flex-grow: 1;
+
+    .logout {
+      height: inherit;
+      @include flex(flex, row, flex-end, center);
+      padding-right: 20px;
+
+      span {
+        font-size: 16px;
+        font-weight: 500;
+        margin-right: 10px;
+      }
+    }
+
+    .nav-list {
+      height: inherit;
+      list-style-type: none;
+      display: flex;
+      margin: 0;
+      padding: 0;
+    }
+    .nav-item {
+      height: inherit;
+      width: 96px;
+      .nav-link {
+        height: inherit;
+        width: inherit;
+        transition: background-color .2s ease-in-out;
+        @include flex-center();
+
+        &.active, &:hover {
+          background-color: $color-main;
+        }
+      }
+    }
+  }
+}
+
+@media screen and (max-width: $screen-max-phone) {
+  .root {
+    .searchbox-section {
+      display: none;
+    }
+    .logo-section {
+      flex-grow: 1;
+    }
+    .nav-section {
+      display: none;
+    }
+  }
+}
+
+@media screen and (max-width: $screen-max-phone-sm) {
+  .root {
+    height: $appbar-height-sm;
+    .logo-section {
+      width: 65px;
+      box-shadow: none;
+    }
+    .nav-section {
+      flex: 1;
+      .nav-list {
+        display: flex;
+        justify-content: space-between;
+      }
+      .nav-item {
+        width: 65px;
+      }
+    }
+  }
+}

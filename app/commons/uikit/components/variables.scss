@@ -1,0 +1,187 @@
+// ** I. VARIABLE
+// 1. COLOR
+// 2. FONT WEIGHT
+// 3. FONT SIZE
+// 4. FONT FAMILY
+// 5. MEDIA QUERY
+// 6. LINE HEIGHT
+// 7. Z-INDEX
+
+// ** II. MIXINS
+
+// ** III. BOOTSTRAP VARIABLES OVERRIDES
+
+// ===============
+
+// 1. COLOR
+$color-main: #209e91 !default;
+$color-main-light: #81c2eb !default;
+$color-header: #209e91 !default;
+$color-title: #4a4a4a !default;
+$color-noti: #e85656 !default;
+$color-bg: #f8f8f8 !default;
+$color-text: #6f6f6f !default;
+$color-inactive-1: #b3b3b3 !default;
+$color-inactive-2: #cacaca !default;
+$color-textfield: #209e91!default;
+$color-error: #e85656;
+$color-success: #90b900;
+$color-alert: #73b5fb;
+
+// 2. FONT WEIGHT
+$fw-light: 300 !default;
+$fw-regular: 400 !default;
+$fw-medium: 500 !default;
+$fw-bold: 600 !default;
+
+// 3. FONT SIZE
+$fs-h1: 36px !default;
+$fs-h2: 22px !default;
+$fs-h3: 20px !default;
+$fs-h4: 16px !default;
+$fs-body: 14px !default;
+
+// 4. FONT FAMILY
+$font-family: Roboto, -apple-system, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol" !default;
+$font-family-secondary: Lato, -apple-system, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+// 5. MEDIA QUERY
+$screen-xs: 0 !default;
+$screen-sm: 576px !default; // Base on Bootstrap.v4
+$screen-md: 768px !default;
+$screen-lg: 992px !default;
+$screen-xl: 1200px !default;
+$screen-min-phone-sm: $screen-xs;
+$screen-min-phone-lg: $screen-sm;
+$screen-min-tablet: $screen-md;
+$screen-min-destop: $screen-lg;
+$screen-min-desktop-lg: $screen-xl;
+$screen-max-phone-sm: $screen-sm - 1;
+$screen-max-phone: $screen-md - 1;
+$screen-max-tablet: $screen-lg - 1;
+$screen-max-desktop: $screen-xl - 1;
+
+$container-max-widths: (xl: 1170px);
+
+// 6. LINE HEIGHT
+$lh-h1: 48px !default;
+$lh-h2: 29px !default;
+$lh-h3: 26px !default;
+$lh-h4: 21px !default;
+$lh-body: 19px !default;
+
+// 7. Z-INDEX:
+$z-index-1: 1001;
+$z-index-2: 2001;
+$z-index-3: 3001;
+$z-index-4: 4001;
+$z-index-5: 5001;
+$z-index-6: 6001;
+$z-index-7: 7001;
+$z-index-8: 8001;
+$z-index-9: 9001;
+
+
+// 8. APP BAR
+$appbar-height: 66px !default;
+$appbar-height-sm: 47px !default;
+// ================================
+// ** II. MIXINS
+
+@mixin text-ellipsis() {
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+
+@mixin flex($display: flex, $flex-direction: row, $justify-content: center, $align-item: center) {
+  display: $display;
+  flex-direction: $flex-direction;
+  justify-content: $justify-content;
+  align-items: $align-item;
+}
+
+@mixin transition($properties, $duration: .3s, $delay: 0s){
+  transition-timing-function: cubic-bezier(0.19, 1, 0.22, 1);
+  transition-property: $properties;
+  transition-duration: $duration;
+  transition-delay: $delay;
+}
+
+@mixin flex-center($display: flex) {
+  display: $display;
+  justify-content: center;
+  align-content: center;
+  align-items: center;
+}
+
+@mixin text-style($h1: false, $h2: false, $h3: false, $h4: false, $body: false) {
+  margin: 0 0 10px 0;
+
+  @if $h1 {
+    color: #fff;
+    font-size: $fs-h1;
+    font-weight: $fw-medium;
+    line-height: $lh-h1;
+
+    @media (max-width: $screen-max-phone) {
+      // font-size: $fs-phone-h1;
+      // line-height: $lh-phone-h1;
+    }
+  }
+
+  @if $h2 {
+    color: #fff;
+    font-size: $fs-h2;
+    font-weight: $fw-medium;
+    line-height: $lh-h2;
+
+    @media (max-width: $screen-max-phone) {
+      // font-size: $fs-phone-h2;
+      // line-height: $lh-phone-h2;
+    }
+  }
+
+  @if $h3 {
+    color: $color-header;
+    font-size: $fs-h3;
+    font-weight: $fw-regular;
+    line-height: $lh-h3;
+
+    @media (max-width: $screen-max-phone) {
+      // font-size: $fs-phone-h3;
+      // line-height: $lh-phone-h3;
+    }
+  }
+
+  @if $h4 {
+    color: $color-inactive-1;
+    font-size: $fs-h4;
+    font-weight: $fw-regular;
+    line-height: $lh-h4;
+
+    @media (max-width: $screen-max-phone) {
+      // font-size: $fs-phone-headline;
+      // line-height: $lh-phone-headline;
+    }
+  }
+
+  @if $body {
+    color: $color-text;
+    font-size: $fs-body;
+    font-weight: $fw-regular;
+    // line-height: $lh-body;
+
+    @media (max-width: $screen-max-phone) {
+      // font-size: $fs-phone-body;
+      // line-height: $lh-phone-body;
+    }
+  }
+}
+
+// ================================
+// ** II. BOOTSTRAP VARIABLES OVERRIDES
+
+$font-family-base: $font-family;
+$body-bg: $color-bg;
+$body-color: $color-text;
+$gutter: 30px !default;

@@ -1,0 +1,36 @@
+@import "../variables";
+
+.block {
+  // background: url('/img/blur-bg-blurred.jpg') fixed no-repeat;
+  background-color: rgba(0,0,0,.2);
+  box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.15);
+  padding: 35px;
+  position: relative;
+
+  &-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-bottom: 35px;
+
+    .right-buttons {
+      display: inline-block;
+
+      button {
+        width: 30px;
+        height: 30px;
+      }
+    }
+  }
+
+  &-title {
+    display: inline-flex;
+    align-items: center;
+    text-transform: uppercase;
+    margin: 0;
+    
+    i {
+      margin-right: 10px;
+    }
+  }
+}

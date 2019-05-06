@@ -1,0 +1,33 @@
+@import "../variables";
+
+.root {
+
+  label {
+    font-size: $fs-body;
+    font-weight: $fw-regular;
+
+    @include flex-center();
+    justify-content: flex-start;
+  }
+
+  i {
+    color: #fff;
+    font-size: 22px;
+    width: 22px;
+    margin-right: 10px;
+  }
+
+  input[type=checkbox] {
+    display: none;
+  }
+
+  &.color-white {
+    label {
+      color: #fff;
+    }
+
+    i {
+      color: #fff;
+    }
+  }
+}
