@@ -9,10 +9,7 @@ const schema = mongoose.Schema({
   password: String,
   fullname: String,
   role: String,
-  phone: {
-    type: String,
-    unique: true,
-  },
+  phone: String,
   dob: Date,
   gender: String,
   address: String,

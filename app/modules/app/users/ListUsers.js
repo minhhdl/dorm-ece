@@ -287,11 +287,11 @@ class ListUsers extends React.Component {
                 {selected.is_new_student ? ([
                   <div className={s.field}>
                     <span className={s.fieldName}>Số báo danh</span>
-                    <span>{selected.registration_number}</span>
+                    <span>{selected.new_student_info.registration_number}</span>
                   </div>,
                   <div className={s.field}>
                     <span className={s.fieldName}>Mã ngành</span>
-                    <span>{selected.speciality_code}</span>
+                    <span>{selected.new_student_info.speciality_code}</span>
                   </div>,
                   <div className={s.imageField}>
                     <span className={s.fieldName}>Giấy báo trúng tuyển</span>
@@ -300,15 +300,15 @@ class ListUsers extends React.Component {
                 ]) : ([
                   <div className={s.field}>
                     <span className={s.fieldName}>Mã sinh viên</span>
-                    <span>{selected.student_code || 'AS017'}</span>
+                    <span>{selected.new_student_info.student_code || 'AS017'}</span>
                   </div>,
                   <div className={s.field}>
                     <span className={s.fieldName}>Lớp</span>
-                    <span>{selected.class || '14ECE'}</span>
+                    <span>{selected.new_student_info.class || '14ECE'}</span>
                   </div>,
                   <div className={s.field}>
                     <span className={s.fieldName}>Khoa</span>
-                    <span>{selected.faculty || 'Công nghệ thông tin'}</span>
+                    <span>{selected.new_student_info.faculty || 'Công nghệ thông tin'}</span>
                   </div>
                 ])}
                 <div className={s.field}>

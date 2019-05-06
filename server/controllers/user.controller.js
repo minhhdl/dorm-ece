@@ -21,6 +21,7 @@ const register = async (req, res) => {
     return res.status(400).json({
       status: 400,
       message: 'Can not create account',
+      stack: e,
     })
   }
 }
