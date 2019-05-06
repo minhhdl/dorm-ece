@@ -109,13 +109,22 @@ class Register extends React.Component {
 
       data.priorities = priorities;
 
-      const user = await register(data);
-      Swal.fire({
-        title: 'Thành công!',
-        text: 'Đăng ký thành công. Vui lòng chờ xét duyệt từ Quản Trị Viên',
-        type: 'success',
-        confirmButtonText: 'OK'
-      })
+      const result = await register(data);
+      if(result.status === 200) {
+        Swal.fire({
+          title: 'Thành công!',
+          text: 'Đăng ký thành công. Vui lòng chờ xét duyệt từ Quản Trị Viên',
+          type: 'success',
+          confirmButtonText: 'OK'
+        })
+      } else {
+        Swal.fire({
+          title: 'Đã xảy ra lỗi!',
+          text: 'Đăng ký không thành công. Vui lòng kiểm tra thông tin và thử lại',
+          type: 'error',
+          confirmButtonText: 'OK'
+        })
+      }
     } catch (e) {
       console.log(e)
       Swal.fire({

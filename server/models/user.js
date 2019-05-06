@@ -10,7 +10,7 @@ const schema = mongoose.Schema({
   fullname: String,
   role: String,
   phone: String,
-  dob: Date,
+  dob: String,
   gender: String,
   address: String,
   ethnic: String,
