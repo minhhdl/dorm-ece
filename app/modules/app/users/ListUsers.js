@@ -274,43 +274,47 @@ class ListUsers extends React.Component {
                   <Col md={6}>
                     <div className={s.imageField}>
                       <span className={s.fieldName}>CMND mặt trước</span>
-                      <img src={selected.identity_card_front || '/img/cmnd-truoc.png'} />
+                      {selected.identity_card_front ? <img src={selected.identity_card_front} /> : <span>-</span>}
                     </div>
                   </Col>
                   <Col md={6}>
                     <div className={s.imageField}>
                       <span className={s.fieldName}>CMND mặt sau</span>
-                      <img src={selected.identity_card_back || '/img/cmnd-sau.png'} />
+                      {selected.identity_card_back ? <img src={selected.identity_card_back} /> : <span>-</span>}
                     </div>
                   </Col>
                 </Row>
-                {selected.is_new_student ? ([
-                  <div className={s.field}>
-                    <span className={s.fieldName}>Số báo danh</span>
-                    <span>{selected.new_student_info.registration_number}</span>
-                  </div>,
-                  <div className={s.field}>
-                    <span className={s.fieldName}>Mã ngành</span>
-                    <span>{selected.new_student_info.speciality_code}</span>
-                  </div>,
-                  <div className={s.imageField}>
-                    <span className={s.fieldName}>Giấy báo trúng tuyển</span>
-                    <img src={selected.new_student_info ? selected.new_student_info.offer_letter_image : '/img/giay-trung-tuyen.png'} />
-                  </div>
-                ]) : ([
-                  <div className={s.field}>
-                    <span className={s.fieldName}>Mã sinh viên</span>
-                    <span>{selected.new_student_info.student_code || 'AS017'}</span>
-                  </div>,
-                  <div className={s.field}>
-                    <span className={s.fieldName}>Lớp</span>
-                    <span>{selected.new_student_info.class || '14ECE'}</span>
-                  </div>,
-                  <div className={s.field}>
-                    <span className={s.fieldName}>Khoa</span>
-                    <span>{selected.new_student_info.faculty || 'Công nghệ thông tin'}</span>
-                  </div>
-                ])}
+                {(() => {
+                  selected.new_student_info = selected.new_student_info || {};
+                  selected.old_student_info = selected.old_student_info || {};
+                  return selected.is_new_student ? ([
+                    <div className={s.field}>
+                      <span className={s.fieldName}>Số báo danh</span>
+                      <span>{selected.new_student_info.registration_number || '-'}</span>
+                    </div>,
+                    <div className={s.field}>
+                      <span className={s.fieldName}>Mã ngành</span>
+                      <span>{selected.new_student_info.speciality_code || '-'}</span>
+                    </div>,
+                    <div className={s.imageField}>
+                      <span className={s.fieldName}>Giấy báo trúng tuyển</span>
+                      {selected.new_student_info.offer_letter_image ? <img src={selected.new_student_info.offer_letter_image} /> : <span>-</span>}
+                    </div>
+                  ]) : ([
+                    <div className={s.field}>
+                      <span className={s.fieldName}>Mã sinh viên</span>
+                      <span>{selected.old_student_info.student_code || '-'}</span>
+                    </div>,
+                    <div className={s.field}>
+                      <span className={s.fieldName}>Lớp</span>
+                      <span>{selected.old_student_info.class || '-'}</span>
+                    </div>,
+                    <div className={s.field}>
+                      <span className={s.fieldName}>Khoa</span>
+                      <span>{selected.old_student_info.faculty || '-'}</span>
+                    </div>
+                  ]);
+                })()}
                 <div className={s.field}>
                   <span className={s.fieldName}>Giấy tờ đính kèm</span>
                   <span>-</span>
