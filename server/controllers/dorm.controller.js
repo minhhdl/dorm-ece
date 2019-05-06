@@ -1,7 +1,7 @@
 const bcrypt = require('bcrypt');
 const { createToken } = require('./auth.controller');
 const User = require('../models/user');
-const Room = require('../models/Room');
+const Room = require('../models/room');
 const DormRegistration = require('../models/dorm-registration');
 
 const getDormRegistrations = async (req, res) => {
