@@ -21,3 +21,4 @@ export const ENDPOINT_DEACTIVATE_USER = userId => `/users/${userId}/deactivate`;
 export const ENDPOINT_REGISTER_DORM = '/users/dorm';
 
 export const ENDPOINT_DORM_REGISTRATIONS = '/dorm-registrations';
+export const ENDPOINT_ACTIVATE_DORM_REGISTRATIONS = regId => `/dorm-registrations/${regId}/activate`;

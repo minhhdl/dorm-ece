@@ -25,6 +25,15 @@ class Login extends React.Component {
       e.preventDefault();
       const data = await login(this.state);
 
+      if (!data.user.is_verified && data.user.role !== 'admin') {
+        return Swal.fire({
+          title: 'Đã xảy ra lỗi!',
+          text: 'Tài khoản của bạn chưa được duyệt bởi Quản trị viên. Vui lòng đăng nhập lại sau khi được xét duyệt',
+          type: 'error',
+          confirmButtonText: 'OK'
+        })
+      }
+
       if(data.access_token) {
         User.store(data.user, data.access_token);
         window.location.href = '/app';

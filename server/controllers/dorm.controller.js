@@ -32,34 +32,20 @@ const getDormRegistrations = async (req, res) => {
   }
 }
 
-const activateUser = async (req, res) => {
+const activateRegistration = async (req, res) => {
   try {
-    const { userId } = req.params;
-    const user = await User.findByIdAndUpdate(userId, { is_verified: true }).exec();
-    return res.status(200).json({ status: '200', message: 'Activate user successfully' });
+    const { regId } = req.params;
+    await DormRegistration.findByIdAndUpdate(regId, { status: 'accepted' }).exec();
+    return res.status(200).json({ status: '200', message: 'Activate registration successfully' });
   } catch (e) {
     return res.status(400).json({
       status: 400,
-      message: 'Can not get users',
-    })
-  }
-}
-
-const deactivateUser = async (req, res) => {
-  try {
-    const { userId } = req.params;
-    const user = await User.findByIdAndUpdate(userId, { is_verified: false }).exec();
-    return res.status(200).json({ status: '200', message: 'Deactivate user successfully' });
-  } catch (e) {
-    return res.status(400).json({
-      status: 400,
-      message: 'Can not get users',
+      message: 'Can not update',
     })
   }
 }
 
 module.exports = {
   getDormRegistrations,
-  activateUser,
-  deactivateUser,
+  activateRegistration,
 }

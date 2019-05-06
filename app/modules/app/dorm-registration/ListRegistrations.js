@@ -73,40 +73,21 @@ class ListUsers extends React.Component {
     this.setState({ selected: null, openDialog: false });
   }
 
-  activateUser = async (userId) => {
+  activateRegistration = async (regId) => {
     try {
-      await UserServices.activateUser(userId);
+      await UserServices.activateRegistration(regId);
       Swal.fire({
         title: 'Thành công!',
-        text: 'Duyệt tài khoản thành công.',
+        text: 'Duyệt đơn đăng ký phòng thành công.',
         type: 'success',
         confirmButtonText: 'OK',
       })
       this.getUsers();
     } catch (e) {
+      console.log(e)
       Swal.fire({
         title: 'Đã xảy ra lỗi!',
-        text: 'Duyệt tài khoản không thành công. Vui lòng thử lại',
-        type: 'error',
-        confirmButtonText: 'OK',
-      })
-    }
-  }
-
-  deactivateUser = async (userId) => {
-    try {
-      await UserServices.deactivateUser(userId);
-      Swal.fire({
-        title: 'Thành công!',
-        text: 'Khóa tài khoản thành công.',
-        type: 'success',
-        confirmButtonText: 'OK',
-      })
-      this.getUsers();
-    } catch (e) {
-      Swal.fire({
-        title: 'Đã xảy ra lỗi!',
-        text: 'Khóa tài khoản không thành công. Vui lòng thử lại',
+        text: 'Duyệt đơn đăng ký phòng không thành công. Vui lòng thử lại',
         type: 'error',
         confirmButtonText: 'OK',
       })
@@ -143,12 +124,15 @@ class ListUsers extends React.Component {
                   <th>
                     Thời gian
                   </th>
+                  <th>
+                    Trạng thái
+                  </th>
                   <th />
                 </tr>
                 {
                   users.map((dorm, key) => {
                     const {
-                      _id: id, room, sem1, sem2, sem3, user, is_verified
+                      _id: id, room, sem1, sem2, sem3, user, status
                     } = dorm;
                     return (
                       <tr key={id}>
@@ -164,6 +148,9 @@ class ListUsers extends React.Component {
                         <td>
                           {sem1 && 'Kì I'} {sem2 && 'Kì II'} {sem3 && 'Kì III'}
                         </td>
+                        <td>
+                          {status !== 'accepted' ? 'Đang chờ duyệt' : 'Đã duyệt'}
+                        </td>
                         <td className="cell-actions">
                           {/* <a href={USER_DETAIL(id)}>
                             <Button outline autoWidth className="m-r-10">
@@ -172,11 +159,11 @@ class ListUsers extends React.Component {
                               </i>
                             </Button>
                           </a> */}
-                          <Button className="m-r-10" outline autoWidth onClick={() => this.handleOpenDialog(user)}>
+                          <Button className="m-r-10" outline autoWidth onClick={() => this.handleOpenDialog(dorm)}>
                             Chi tiết
                           </Button>
-                          {!is_verified && (
-                            <Button className="m-r-10" outline autoWidth onClick={() => this.activateUser(id)}>
+                          {status !== 'accepted' && (
+                            <Button className="m-r-10" outline autoWidth onClick={() => this.activateRegistration(id)}>
                               Duyệt
                             </Button>
                           )}
@@ -203,89 +190,62 @@ class ListUsers extends React.Component {
         </Block>
 
         <Dialog scroll="body" maxWidth="md" open={openDialog} onClose={() => this.handleCloseDialog()} aria-labelledby="simple-dialog-title">
-          <DialogTitle id="simple-dialog-title">Thông tin chi tiết tài khoản</DialogTitle>
+          <DialogTitle id="simple-dialog-title">Thông tin chi tiết đăng ký phòng</DialogTitle>
           {selected && (
             <Fragment>
               <DialogContent>
                 <div className={s.field}>
+                  <span className={s.fieldName}>Phòng</span>
+                  <span>{selected.room}</span>
+                </div>
+                <div className={s.field}>
                   <span className={s.fieldName}>Họ và tên</span>
-                  <span>{selected.fullname || 'Sinh viên 1'}</span>
+                  <span>{selected.user.fullname || 'Sinh viên 1'}</span>
                 </div>
                 <div className={s.field}>
                   <span className={s.fieldName}>Số điện thoại</span>
-                  <span>{selected.phone}</span>
+                  <span>{selected.user.phone}</span>
                 </div>
                 <div className={s.field}>
                   <span className={s.fieldName}>Email</span>
-                  <span>{selected.email}</span>
+                  <span>{selected.user.email}</span>
                 </div>
                 <div className={s.field}>
                   <span className={s.fieldName}>Ngày sinh</span>
-                  <span>{selected.dob || '22-02-1996'}</span>
+                  <span>{selected.user.dob || '22-02-1996'}</span>
                 </div>
-                <div className={s.field}>
-                  <span className={s.fieldName}>Giới tính</span>
-                  <span>{selected.gender || 'Name'}</span>
-                </div>
-                <div className={s.field}>
-                  <span className={s.fieldName}>Hộ khẩu</span>
-                  <span>{selected.address || 'Đà Nẵng, Việt Nam'}</span>
-                </div>
-                <div className={s.field}>
-                  <span className={s.fieldName}>CMND</span>
-                  <span>{selected.identity_number}</span>
-                </div>
-                <Row>
-                  <Col md={6}>
-                    <div className={s.imageField}>
-                      <span className={s.fieldName}>CMND mặt trước</span>
-                      <img src={selected.identity_card_front || '/img/cmnd-truoc.png'} />
-                    </div>
-                  </Col>
-                  <Col md={6}>
-                    <div className={s.imageField}>
-                      <span className={s.fieldName}>CMND mặt sau</span>
-                      <img src={selected.identity_card_back || '/img/cmnd-sau.png'} />
-                    </div>
-                  </Col>
-                </Row>
-                {selected.is_new_student ? ([
+                
+                {selected.user.is_new_student ? ([
                   <div className={s.field}>
                     <span className={s.fieldName}>Số báo danh</span>
-                    <span>{selected.registration_number}</span>
+                    <span>{selected.user.registration_number}</span>
                   </div>,
                   <div className={s.field}>
                     <span className={s.fieldName}>Mã ngành</span>
-                    <span>{selected.speciality_code}</span>
+                    <span>{selected.user.speciality_code}</span>
                   </div>,
                   <div className={s.imageField}>
                     <span className={s.fieldName}>Giấy báo trúng tuyển</span>
-                    <img src={selected.new_student_info ? selected.new_student_info.offer_letter_image : '/img/giay-trung-tuyen.png'} />
+                    <img src={selected.user.new_student_info ? selected.new_student_info.offer_letter_image : '/img/giay-trung-tuyen.png'} />
                   </div>
                 ]) : ([
                   <div className={s.field}>
                     <span className={s.fieldName}>Mã sinh viên</span>
-                    <span>{selected.student_code || 'AS017'}</span>
+                    <span>{selected.user.student_code || 'AS017'}</span>
                   </div>,
                   <div className={s.field}>
                     <span className={s.fieldName}>Lớp</span>
-                    <span>{selected.class || '14ECE'}</span>
+                    <span>{selected.user.class || '14ECE'}</span>
                   </div>,
                   <div className={s.field}>
                     <span className={s.fieldName}>Khoa</span>
-                    <span>{selected.faculty || 'Công nghệ thông tin'}</span>
+                    <span>{selected.user.faculty || 'Công nghệ thông tin'}</span>
                   </div>
                 ])}
-                <div className={s.field}>
-                  <span className={s.fieldName}>Giấy tờ đính kèm</span>
-                  <span>-</span>
-                </div>
               </DialogContent>
               <DialogActions>
-                {!selected.is_verified ? (
-                  <Button onClick={() => this.activateUser(selected._id)}>Duyệt tài khoản</Button>
-                ) : (
-                  <Button color="danger" onClick={() => this.deactivateUser(selected._id)}>Khóa tài khoản</Button>
+                {!selected.status !== 'accepted' && (
+                  <Button onClick={() => this.activateRegistration(selected._id)}>Duyệt đăng ký</Button>
                 )}
                 <Button onClick={() => this.handleCloseDialog()} color="light-grey">Đóng</Button>
               </DialogActions>

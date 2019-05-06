@@ -12,6 +12,10 @@ const schema = mongoose.Schema({
   image: String,
   bank_account_name: String,
   bank_account_number: String,
+  status: {
+    type: String,
+    default: 'pending'
+  }
 });
 
 const DormRegistration = new mongoose.model('DormRegistration', schema);

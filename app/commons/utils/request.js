@@ -59,7 +59,7 @@ export default class Request {
   static async put(endpoint, data, noAuth = false) {
     const headers = initHeader(noAuth);
     try {
-      const response = await request.put(endpoint, data, headers);
+      const response = await request.put(endpoint, data, { headers });
       return handleRes(response);
     } catch (e) {
       return handleError(e);
@@ -69,7 +69,7 @@ export default class Request {
   static async delete(endpoint, noAuth = false) {
     const headers = initHeader(noAuth);
     try {
-      const response = await request.delete(endpoint, headers);
+      const response = await request.delete(endpoint, { headers });
       return handleRes(response);
     } catch (e) {
       return handleError(e);
@@ -79,7 +79,7 @@ export default class Request {
   static async patch(endpoint, data, noAuth = false) {
     const headers = initHeader(noAuth);
     try {
-      const response = await request.patch(endpoint, data, headers);
+      const response = await request.patch(endpoint, data, { headers });
       return handleRes(response);
     } catch (e) {
       return handleError(e);

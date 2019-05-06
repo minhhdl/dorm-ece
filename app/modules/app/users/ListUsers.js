@@ -152,6 +152,9 @@ class ListUsers extends React.Component {
                   <th>
                     Diện ưu tiên
                   </th>
+                  <th>
+                    Trạng thái
+                  </th>
                   <th />
                 </tr>
                 {
@@ -188,6 +191,9 @@ class ListUsers extends React.Component {
                         </td>
                         <td>
                           {prioritiesList.join(', ') || '-' }
+                        </td>
+                        <td>
+                          {!is_verified ? 'Đang chờ duyệt' : 'Đã duyệt'}
                         </td>
                         <td className="cell-actions">
                           {/* <a href={USER_DETAIL(id)}>
