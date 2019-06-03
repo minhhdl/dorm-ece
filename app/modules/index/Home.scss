@@ -1,0 +1,73 @@
+@import '../../commons/uikit/components/variables';
+
+.sideMenu {
+  padding: 0;
+  margin: 0;
+  list-style-type: none;
+  box-shadow: 0 0 30px -10px rgba(0, 0, 0, 0.35);
+  margin-top: 20px;
+  border-radius: 2px;
+  overflow: hidden;
+
+  .menuDivider {
+    margin-bottom: 2px;
+    a {
+      padding: 10px 15px;
+      display: block;
+      background-color: $color-main;
+      color: #fff;
+      font-weight: 500;
+    }
+  }
+
+  .menuItem {
+    margin-bottom: 1px;
+    a {
+      padding: 10px 15px;
+      display: block;
+      background-color: #fff;
+      font-weight: 500;
+    }
+  }
+}
+
+.post {
+  margin-top: 20px;
+  border-radius: 2px;
+  overflow: hidden;
+  background-color: #fff;
+  box-shadow: 0 0 30px -10px rgba(0, 0, 0, 0.2);
+
+  .postTitle {
+    background-color: $color-alert;
+    color: #fff;
+    font-weight: 500;
+    padding: 10px 15px;
+  }
+
+  .postContent {
+    padding: 10px 15px 20px 15px;
+    white-space: pre-line;
+    line-height: 1.5;
+  }
+}
+
+.footer {
+  background-color: $color-header;
+  padding: 25px;
+  text-align: center;
+  color: #fff;
+}
+
+.showXs {
+  display: none;
+}
+
+@media screen and (max-width: 768px) {
+  .showXs {
+    display: flex;
+  }
+  .hideXs {
+    display: none;
+  }
+}

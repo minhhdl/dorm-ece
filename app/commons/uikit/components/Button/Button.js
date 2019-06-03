@@ -10,7 +10,8 @@ class Button extends React.PureComponent {
     outline: PropTypes.bool,
     iconLeft: PropTypes.bool,
     iconRight: PropTypes.bool,
-    color: PropTypes.string
+    color: PropTypes.string,
+    component: PropTypes.oneOfType([PropTypes.string, PropTypes.element]),
   };
 
   static defaultProps = {
@@ -18,7 +19,8 @@ class Button extends React.PureComponent {
     iconRight: false,
     clear: false,
     outline: false,
-    color: null
+    color: null,
+    component: 'button',
   };
 
   getColorClass() {
@@ -35,7 +37,7 @@ class Button extends React.PureComponent {
   }
 
   render() {
-    const { clear, color, outline, iconLeft, autoWidth, fullWidth, iconRight, className, children, ...otherProps } = this.props;
+    const { component, clear, color, outline, iconLeft, autoWidth, fullWidth, iconRight, className, children, ...otherProps } = this.props;
     let classes = cn(
       s.root, 
       iconLeft && s["icon-left"],
@@ -48,10 +50,12 @@ class Button extends React.PureComponent {
       className
     );
 
+    const Component = component || 'button';
+
     return (
-      <button className={`${classes}`} {...otherProps}>
+      <Component className={`${classes}`} {...otherProps}>
         {children}
-      </button>
+      </Component>
     );
   }
 }
