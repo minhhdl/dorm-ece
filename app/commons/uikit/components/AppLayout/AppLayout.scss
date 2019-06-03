@@ -9,6 +9,7 @@
   position: relative;
 }
 .app-content {
+  min-height: calc(100vh - 66px);
   margin-left: 275px;
   padding: 30px;
   @include transition(all, .3s);
@@ -20,7 +21,7 @@
 .page-title {
   margin-bottom: 20px;
   h1 {
-    color: $color-main;
+    color: $color-header;
   }
 }
 

@@ -5,7 +5,7 @@
 
   label {
     font-size: 14px;
-    color: #fff;
+    color: #6f6f6f;
     margin-bottom: 5px;
     display: inline-block;
   }
@@ -24,13 +24,16 @@
     flex: 1;
 
     input, textarea {
-      border: none;
       width: 100%;
-      padding: 0;
+      padding: 10px 15px;
       font-size: 16px;
-      line-height: 2.25;
-      color: #fff;
-      background-color: transparent;
+      min-height: 46px;
+      line-height: 1.5;
+      color: #6f6f6f;
+      background-color: #fff;
+      border: 1px solid #cacaca;
+      border-radius: 2px;
+      box-sizing: border-box;
 
       &:focus {
         outline: none;
@@ -51,28 +54,28 @@
       line-height: 1.5;
     }
 
-    &:before {
-      content: '';
-      position: absolute;
-      width: 100%;
-      height: 1px;
-      background-color: $color-textfield;
-      bottom: 0;
-      left: 0;
-    }
+    // &:before {
+    //   content: '';
+    //   position: absolute;
+    //   width: 100%;
+    //   height: 1px;
+    //   background-color: $color-textfield;
+    //   bottom: 0;
+    //   left: 0;
+    // }
 
-    &:after {
-      content: '';
-      position: absolute;
-      width: 0;
-      height: 1.6px;
-      background-color: $color-textfield;
-      bottom: 0;
-      left: 0;
-      right: 0;
-      margin: auto;
-      transition: width .2s ease-in-out;
-    }
+    // &:after {
+    //   content: '';
+    //   position: absolute;
+    //   width: 0;
+    //   height: 1.6px;
+    //   background-color: $color-textfield;
+    //   bottom: 0;
+    //   left: 0;
+    //   right: 0;
+    //   margin: auto;
+    //   transition: width .2s ease-in-out;
+    // }
 
     &.focused:after {
       width: 100%;

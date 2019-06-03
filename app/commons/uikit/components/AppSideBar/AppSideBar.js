@@ -7,11 +7,12 @@ import s from './AppSideBar.scss';
 
 const NAV_ITEMS = [
   {
-    key: 'dashboard',
-    label: 'Tổng quan',
+    key: 'notification',
+    label: 'Thông báo',
     path: '/app',
-    icon: 'dashboard',
+    icon: 'notifications',
     roles: ['admin', 'student'],
+    hasNews: true,
   },
   {
     key: 'register-dorm',
@@ -21,9 +22,16 @@ const NAV_ITEMS = [
     roles: ['student'],
   },
   {
-    key: 'dorms',
+    key: 'register-services',
+    label: 'Đăng ký dịch vụ',
+    path: '/app/register-services',
+    icon: 'meeting_room',
+    roles: ['student'],
+  },
+  {
+    key: 'rooms',
     label: 'Quản lý phòng',
-    path: '/app/dorms',
+    path: '/app/rooms',
     icon: 'meeting_room',
     roles: ['admin'],
   },
@@ -31,6 +39,13 @@ const NAV_ITEMS = [
     key: 'dorms',
     label: 'Quản lý đăng ký phòng',
     path: '/app/dorm-registrations',
+    icon: 'meeting_room',
+    roles: ['admin'],
+  },
+  {
+    key: 'services',
+    label: 'Quản lý đăng ký dịch vụ',
+    path: '/app/service-registrations',
     icon: 'meeting_room',
     roles: ['admin'],
   },
@@ -75,7 +90,7 @@ const AppSideBar = ({ router, isCollapse }) => {
                     </i>
                   )}
                   {menu.label}
-                  {/* {menu.items && <i className="material-icons">keyboard_arrow_down</i>} */}
+                  {menu.hasNews && <i className={`material-icons ${s.newsIcon}`}>fiber_manual_record</i>}
                 </a>
               {/* </Link> */}
               {/* {

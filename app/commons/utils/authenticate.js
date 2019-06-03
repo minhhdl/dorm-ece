@@ -12,7 +12,10 @@ const Authentication = (WrappedComponent) => {
     }
 
     static async getInitialProps({ req }) {
-      return { token: req ? req.cookies['dorm@accesstoken'] : null };
+      return {
+        token: req ? req.cookies['dorm@accesstoken'] : null,
+        user: req ? JSON.parse(req.cookies['dorm@user']) : null,
+      };
     }
 
     render() {

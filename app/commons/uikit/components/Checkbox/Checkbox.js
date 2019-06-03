@@ -49,7 +49,7 @@ class Checkbox extends React.Component {
     const classes = cn(
       s.root,
       className,
-      (color == "white") && s["color-white"]
+      (color === "white") && s["color-white"]
     );
 
     return (

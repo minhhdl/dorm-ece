@@ -18,8 +18,8 @@ class ListUsers extends React.Component {
       openDialog: false,
       selected: null,
     };
-    this.deleteUser = this.deleteUser.bind(this);
-    this.comfirmDeleteUser = this.comfirmDeleteUser.bind(this);
+    this.deleteRegistration = this.deleteRegistration.bind(this);
+    this.comfirmDeleteRegistration = this.comfirmDeleteRegistration.bind(this);
   }
 
   componentDidMount() {
@@ -34,33 +34,33 @@ class ListUsers extends React.Component {
     }
   }
 
-  deleteUser = async (index) => {
+  deleteRegistration = async (index) => {
     const { users } = this.state;
     const user = users[index];
-    const count = await UserServices.deleteUser(user._id);
+    const count = await UserServices.deleteRegistration(user._id);
     if (count) {
       users.splice(index, 1);
       this.setState({ users }, () => {
         Swal.fire(
-          'Deleted!',
-          'Your user has been deleted.',
+          'Đã xóa!',
+          'Xóa đơn đăng ký thành công.',
           'success',
         );
       });
     }
   }
 
-  comfirmDeleteUser = async (index) => {
+  comfirmDeleteRegistration = async (index) => {
     Swal.fire({
-      title: 'Are you sure?',
-      text: 'You will not be able to recover this user!',
+      title: 'Bạn có chắc?',
+      text: 'Thông tin sẽ không thể khôi phục sau khi xóa.',
       type: 'warning',
       showCancelButton: true,
-      confirmButtonText: 'Yes, delete it!',
-      cancelButtonText: 'No, keep it',
+      confirmButtonText: 'Tiếp tục',
+      cancelButtonText: 'Đóng',
     }).then((result) => {
       if (result.value) {
-        this.deleteUser(index);
+        this.deleteRegistration(index);
       }
     });
   }
@@ -88,6 +88,27 @@ class ListUsers extends React.Component {
       Swal.fire({
         title: 'Đã xảy ra lỗi!',
         text: 'Duyệt đơn đăng ký phòng không thành công. Vui lòng thử lại',
+        type: 'error',
+        confirmButtonText: 'OK',
+      })
+    }
+  }
+
+  rejectRegistration = async (regId) => {
+    try {
+      await UserServices.rejectRegistration(regId);
+      Swal.fire({
+        title: 'Thành công!',
+        text: 'Từ chối đơn đăng ký phòng thành công.',
+        type: 'success',
+        confirmButtonText: 'OK',
+      })
+      this.getUsers();
+    } catch (e) {
+      console.log(e)
+      Swal.fire({
+        title: 'Đã xảy ra lỗi!',
+        text: 'Từ chối đơn đăng ký phòng không thành công. Vui lòng thử lại',
         type: 'error',
         confirmButtonText: 'OK',
       })
@@ -143,7 +164,7 @@ class ListUsers extends React.Component {
                           {user.fullname || '-'}
                         </td>
                         <td>
-                          P.{room || '-'}
+                          P.{room.name || '-'}
                         </td>
                         <td>
                           {sem1 && 'Kì I'} {sem2 && 'Kì II'} {sem3 && 'Kì III'}
@@ -162,22 +183,16 @@ class ListUsers extends React.Component {
                           <Button className="m-r-10" outline autoWidth onClick={() => this.handleOpenDialog(dorm)}>
                             Chi tiết
                           </Button>
-                          {status !== 'accepted' && (
+                          {status === 'pending' && ([
                             <Button className="m-r-10" outline autoWidth onClick={() => this.activateRegistration(id)}>
                               Duyệt
+                            </Button>,
+                            <Button className="m-r-10" color="error" outline autoWidth onClick={() => this.rejectRegistration(id)}>
+                              Từ chối
                             </Button>
-                          )}
-                          {/* <a href={EDIT_USER_URL(id)}>
-                            <Button outline autoWidth className="m-r-10">
-                              <i className="material-icons">
-                                edit
-                              </i>
-                            </Button>
-                          </a>
-                          <Button outline autoWidth color="danger" onClick={() => this.comfirmDeleteUser(key)}>
-                            <i className="material-icons">
-                              delete
-                            </i>
+                          ])}
+                          {/* <Button outline autoWidth color="danger" onClick={() => this.comfirmDeleteRegistration(key)}>
+                            Xóa
                           </Button> */}
                         </td>
                       </tr>
@@ -196,7 +211,7 @@ class ListUsers extends React.Component {
               <DialogContent>
                 <div className={s.field}>
                   <span className={s.fieldName}>Phòng</span>
-                  <span>{selected.room}</span>
+                  <span>{selected.room.name}</span>
                 </div>
                 <div className={s.field}>
                   <span className={s.fieldName}>Họ và tên</span>

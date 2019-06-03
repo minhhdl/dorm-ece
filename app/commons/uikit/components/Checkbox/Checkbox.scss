@@ -5,13 +5,14 @@
   label {
     font-size: $fs-body;
     font-weight: $fw-regular;
+    color: #6f6f6f;
 
     @include flex-center();
     justify-content: flex-start;
   }
 
   i {
-    color: #fff;
+    color: #6f6f6f;
     font-size: 22px;
     width: 22px;
     margin-right: 10px;

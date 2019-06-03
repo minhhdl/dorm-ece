@@ -18,7 +18,18 @@ export const ENDPOINT_GET_PRODUCT_BY_ID = id => `/users/detail/${id}`;
 export const ENDPOINT_USERS = '/users';
 export const ENDPOINT_ACTIVATE_USER = userId => `/users/${userId}/activate`;
 export const ENDPOINT_DEACTIVATE_USER = userId => `/users/${userId}/deactivate`;
+export const ENDPOINT_SPEC_USER = userId => `/users/${userId}`;
 export const ENDPOINT_REGISTER_DORM = '/users/dorm';
+export const ENDPOINT_REGISTER_SERVICES = '/users/services';
 
 export const ENDPOINT_DORM_REGISTRATIONS = '/dorm-registrations';
-export const ENDPOINT_ACTIVATE_DORM_REGISTRATIONS = regId => `/dorm-registrations/${regId}/activate`;
+export const ENDPOINT_SPEC_DORM_REGISTRATION = id => `/dorm-registrations/${id}`;
+export const ENDPOINT_ACTIVATE_DORM_REGISTRATIONS = regId => `/dorm-registrations/${regId}/accept`;
+export const ENDPOINT_REJECT_DORM_REGISTRATIONS = regId => `/dorm-registrations/${regId}/reject`;
+
+export const ENDPOINT_SERVICE_REGISTRATIONS = '/service-registrations';
+export const ENDPOINT_ACTIVATE_SERVICE_REGISTRATIONS = regId => `/service-registrations/${regId}/accept`;
+export const ENDPOINT_REJECT_SERVICE_REGISTRATIONS = regId => `/service-registrations/${regId}/reject`;
+
+export const ENDPOINT_ROOMS = '/rooms';
+export const ENDPOINT_NOTIFICATIONS = '/notifications';

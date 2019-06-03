@@ -89,14 +89,15 @@
   width: inherit;
   height: inherit;
   // background-color: rgba(0, 0, 0, 0.2);
-  border: dashed 1px #fff;
-  color: #fff;
+  border: dashed 1px #6f6f6f;
+  color: #6f6f6f;
   cursor: pointer;
   border-radius: 10px;
   text-align: center;
   position: relative;
   overflow: hidden;
   z-index: 1;
+  box-sizing: border-box;
 
   img {
     width: 100%;

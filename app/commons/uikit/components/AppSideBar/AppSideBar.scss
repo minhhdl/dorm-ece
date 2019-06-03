@@ -1,7 +1,7 @@
 @import "../variables";
 
 .sidebar {
-  background-color: rgba(0,0,0,.75);
+  background-color: $color-header;
   position: fixed;
   top: $appbar-height;
   bottom: 0;
@@ -20,6 +20,14 @@
     @include transition(all, .3s);
     overflow: hidden;
     box-sizing: border-box;
+    position: relative;
+
+    .newsIcon {
+      position: absolute;
+      right: 0px;
+      font-size: 18px;
+      color: $color-error;
+    }
 
     i {
       margin-right: 15px;

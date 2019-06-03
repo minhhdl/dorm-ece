@@ -3,18 +3,19 @@ import Head from 'next/head';
 import Swal from 'sweetalert2';
 import authenticate from '../../../commons/utils/authenticate';
 import { AppLayout, Row, Col, Checkbox, TextField, Container,  PhotoUploader, Button } from '../../../commons/uikit';
-import { registerDorm } from './services';
+import { getRooms, registerDorm } from './services';
 import s from './RegisterDorm.scss';
 
 class RegisterDorm extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      rooms: [],
       sem1: false,
       sem2: false,
       sem3: false,
       image: '',
-      room: '101',
+      room: null,
       bankAccountName: '',
       bankAccountNumber: '',
     };
@@ -25,11 +26,20 @@ class RegisterDorm extends React.Component {
   }
 
   componentDidMount() {
+    this.getRooms();
     this.uploadWidget = window.cloudinary.createUploadWidget({
       cloudName: 'izzilab', 
       uploadPreset: 'downyshoes',
       multiple: false,
     });
+  }
+
+  getRooms = async () => {
+    const data = await getRooms({ status: 'not-full' });
+    console.log(data);
+    if (data) {
+      this.setState({ rooms: data.data });
+    }
   }
 
   startUpload = async (field) => {
@@ -54,7 +64,8 @@ class RegisterDorm extends React.Component {
       const { image, sem1, sem2, sem3, room, bankAccountName, bankAccountNumber } = this.state;
 
       const reg = await registerDorm({
-        image, sem1, sem2, sem3, room,
+        image, sem1, sem2, sem3,
+        room: room._id,
         bank_account_name: bankAccountName,
         bank_account_number: bankAccountNumber,
       });
@@ -87,14 +98,14 @@ class RegisterDorm extends React.Component {
       sem2: false,
       sem3: false,
       image: '',
-      room: '101',
+      room: null,
       bankAccountName: '',
       bankAccountNumber: '',
     });
   }
 
   render() {
-    const { image, sem1, sem2, sem3, room, bankAccountName, bankAccountNumber } = this.state;
+    const { rooms, image, sem1, sem2, sem3, room, bankAccountName, bankAccountNumber } = this.state;
     return (
       <AppLayout title={"Đăng ký phòng"}>
         <Head>
@@ -105,7 +116,17 @@ class RegisterDorm extends React.Component {
             <Col md={10}>
               <span style={{ marginBottom: 10, display: 'inline-block' }}>Loại phòng đăng ký</span>
               <Row className="m-b-20">
-                <Col md={3}>
+                {rooms.map(item => (
+                  <Col md={3}>
+                    <button
+                      className={`${s.dormItem} ${(room && room._id === item._id) ? s.active : ''}`}
+                      onClick={() => this.chooseRoom(item)}
+                    >
+                      P. {item.name}
+                    </button>
+                  </Col>
+                ))}
+                {/* <Col md={3}>
                   <button
                     className={`${s.dormItem} ${room === '101' ? s.active : ''}`}
                     onClick={() => this.chooseRoom('101')}
@@ -128,7 +149,7 @@ class RegisterDorm extends React.Component {
                   >
                     P. 103
                   </button>
-                </Col>
+                </Col> */}
               </Row>
               <span style={{ marginBottom: 10, display: 'inline-block' }}>Thời gian đăng ký</span>
               <Row className="m-b-20">

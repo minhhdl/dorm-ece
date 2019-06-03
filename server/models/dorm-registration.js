@@ -1,7 +1,10 @@
 const mongoose = require('mongoose');
 
 const schema = mongoose.Schema({
-  room: String,
+  room: {
+    type: 'ObjectId',
+    ref: 'Room',
+  },
   user: {
     type: 'ObjectId',
     ref: 'User',
@@ -16,6 +19,11 @@ const schema = mongoose.Schema({
     type: String,
     default: 'pending'
   }
+}, {
+  timestamps: {
+    createdAt: 'created_at',
+    updatedAt: 'updated_at',
+  },
 });
 
 const DormRegistration = new mongoose.model('DormRegistration', schema);

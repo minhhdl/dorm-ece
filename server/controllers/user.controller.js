@@ -3,6 +3,7 @@ const { createToken } = require('./auth.controller');
 const User = require('../models/user');
 const Room = require('../models/room');
 const DormRegistration = require('../models/dorm-registration');
+const ServiceRegistration = require('../models/service-registration');
 
 const register = async (req, res) => {
   try {
@@ -29,7 +30,7 @@ const register = async (req, res) => {
 const login = async (req, res) => {
   try {
     const { email, password } = req.body;
-    let user = await User.findOne({ email }).exec();
+    let user = await User.findOne({ email }).populate('currentRoom').exec();
     if (!user) {
       return res.status(404).json({
         status: 404,
@@ -68,8 +69,8 @@ const getUsers = async (req, res) => {
     const skip = (page - 1) * limit;
     const users = await User
                         .find({ role: { $ne: 'admin' } }, '-__v')
-                        .skip(skip)
-                        .limit(limit)
+                        // .skip(skip)
+                        // .limit(limit)
                         .sort({ priorities: 'desc', created_at: 'desc' })
                         .exec();
     const totalItems = await User.count();
@@ -86,7 +87,37 @@ const getUsers = async (req, res) => {
       message: 'Can not get users',
     })
   }
-}
+};
+
+const updateUser = async (req, res) => {
+  try {
+    const { userId } = req.params;
+
+    const user = await User.findByIdAndUpdate(userId, { ...req.body }).exec();
+
+    return res.status(200).json({ status: '200', message: 'Update user successfully', data: user });
+  } catch (e) {
+    return res.status(400).json({
+      status: 400,
+      message: 'Can not update user',
+    })
+  }
+};
+
+const deleteUser = async (req, res) => {
+  try {
+    const { userId } = req.params;
+
+    await User.findByIdAndDelete(userId).exec();
+
+    return res.status(200).json({ status: '200', message: 'Delete user successfully' });
+  } catch (e) {
+    return res.status(400).json({
+      status: 400,
+      message: 'Can not delete user',
+    })
+  }
+};
 
 const activateUser = async (req, res) => {
   try {
@@ -139,6 +170,28 @@ const regDorm = async (req, res) => {
   }
 }
 
+const regServices = async (req, res) => {
+  try {
+    const { user } = req.auth;
+    const { _id: userId, currentRoom } = user;
+    const { parking, laundry, internet } = req.body;
+
+    const dorm = new ServiceRegistration({
+      parking, laundry, internet,
+      user: userId,
+    })
+
+    await dorm.save();
+
+    return res.status(200).json({ status: '200', message: 'Register services successfully', data: dorm });
+  } catch (e) {
+    return res.status(400).json({
+      status: 400,
+      message: 'Can not register services',
+    })
+  }
+}
+
 module.exports = {
   login,
   register,
@@ -146,4 +199,7 @@ module.exports = {
   activateUser,
   deactivateUser,
   regDorm,
+  deleteUser,
+  updateUser,
+  regServices,
 }

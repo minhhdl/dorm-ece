@@ -117,6 +117,7 @@ class Register extends React.Component {
           type: 'success',
           confirmButtonText: 'OK'
         })
+        window.location.href = '/app/login';
       } else {
         Swal.fire({
           title: 'Đã xảy ra lỗi!',

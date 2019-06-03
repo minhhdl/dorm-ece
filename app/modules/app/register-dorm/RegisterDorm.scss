@@ -94,10 +94,10 @@
   @include flex-center();
   width: 100px;
   height: 100px;
-  border: 1px dashed #fff;
+  border: 1px dashed $color-header;
   border-radius: 10px;
   background-color: transparent;
-  color: #fff;
+  color: $color-header;
   cursor: pointer;
   outline: none;
 

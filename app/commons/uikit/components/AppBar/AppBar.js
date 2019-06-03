@@ -45,6 +45,18 @@ class AppBar extends React.PureComponent {
               menu
             </i>
           </Button>
+          {/* <Button
+            autoWidth
+            clear
+            color="light-grey"
+            className={`${s.collapseButton} m-l-20`}
+            onClick={triggerCollapse}
+          >
+            <i className="material-icons">
+              notifications
+            </i>
+          </Button> */}
+
           <div className={s['nav-section']}>
             {/* <ul className={s['nav-list']}>
               {

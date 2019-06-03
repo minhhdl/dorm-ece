@@ -35,6 +35,25 @@ const schema = mongoose.Schema({
     class: String,
     faculty: String,
   },
+  registered_services: [
+    {
+      name: String,
+      key: String,
+      register_date: Date,
+    },
+  ],
+  currentRoom: {
+    type: 'ObjectId',
+    ref: 'Room',
+  },
+  parking: Boolean,
+  laundry: Boolean,
+  internet: Boolean,
+}, {
+  timestamps: {
+    createdAt: 'created_at',
+    updatedAt: 'updated_at',
+  },
 });
 
 const User = new mongoose.model('User', schema);

@@ -23,11 +23,10 @@
   */
 
   .admin {
-    color: #fff;
+    color: #6f6f6f;
     -webkit-font-smoothing: antialiased;
-    background: url('/img/blur-bg.jpg') center center no-repeat;
-    background-size: cover;
     min-height: 100vh;
+    background-color: #f8f8f8;
   }
 
   /**
@@ -81,7 +80,7 @@
 
   a {
     background-color: transparent;
-    color: #fff;
+    color: #6f6f6f;
     text-decoration: none;
 
     &:hover {
