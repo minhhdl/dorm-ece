@@ -339,14 +339,14 @@ class ListUsers extends React.Component {
                                 >
                                   Chi tiết
                                 </MenuItem>
-                                <MenuItem
+                                {/* <MenuItem
                                   onClick={() => {
                                     this.handleOpenEditDialog(user);
                                     closeDropdown();
                                   }}
                                 >
                                   Cập nhật
-                                </MenuItem>
+                                </MenuItem> */}
                                 {!is_verified ? (
                                   <MenuItem
                                     onClick={() => {
