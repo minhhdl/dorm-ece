@@ -67,12 +67,13 @@ const getUsers = async (req, res) => {
     const page = parseInt(req.query.page || 1);
     const limit = parseInt(req.query.per_page || 10);
     const skip = (page - 1) * limit;
-    const users = await User
+    let users = await User
                         .find({ role: { $ne: 'admin' } }, '-__v')
                         // .skip(skip)
                         // .limit(limit)
                         .sort({ priorities: 'desc', created_at: 'desc' })
                         .exec();
+    users = users.sort((a, b) => a.priorLength < b.priorLength);
     const totalItems = await User.count();
     const pagination = {
       page,

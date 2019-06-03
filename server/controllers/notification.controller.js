@@ -28,7 +28,7 @@ const getNotifications = async (req, res) => {
                         .find({ receiver, type }, '-__v')
                         // .skip(skip)
                         // .limit(limit)
-                        .sort({ priorities: 'desc', created_at: 'desc' })
+                        .sort({ created_at: 'desc' })
                         .exec();
     return res.status(200).json({ notifications });
   } catch (e) {

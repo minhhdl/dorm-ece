@@ -76,11 +76,17 @@
       display: none;
     }
     .logo-section {
-      flex-grow: 1;
+      // flex-grow: 1;
+      // position: absolute;
+      // z-index: -1;
+      // top: 0;
+      // left: 0;
+      // width: 100%;
+      // display: none;
     }
-    .nav-section {
-      display: none;
-    }
+    // .nav-section {
+    //   display: none;
+    // }
   }
 }
 
@@ -88,8 +94,9 @@
   .root {
     height: $appbar-height-sm;
     .logo-section {
-      width: 65px;
-      box-shadow: none;
+      // width: 65px;
+      display: none;
+      // box-shadow: none;
     }
     .nav-section {
       flex: 1;

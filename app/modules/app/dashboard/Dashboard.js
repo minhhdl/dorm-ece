@@ -118,7 +118,7 @@ class Dashboard extends React.Component {
           ) : (
             <Col md={7}>
               <h3>Thông báo của bạn</h3>
-              {notifications.map(item => (
+              {notifications.map(item => item.created_at && (
                 <div className={`${s.notification} ${item.seen ? '' : s.notificationNew}`}>
                   <div className={s.notificationContent} dangerouslySetInnerHTML={{ __html: getMessageFromCode(item.code) }} />
                   <div className={s.notificationTime}>

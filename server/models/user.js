@@ -56,6 +56,16 @@ const schema = mongoose.Schema({
   },
 });
 
+schema.virtual('priorLength').get(function(){
+  return this.priorities.length;
+});
+schema.set('toJSON', {
+  virtuals: true,
+});
+schema.set('toObject', {
+  virtuals: true,
+});
+
 const User = new mongoose.model('User', schema);
 
 module.exports = User;
