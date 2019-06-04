@@ -7,7 +7,7 @@ const {
 const { getDormRegistrations, acceptRegistration, rejectRegistration, deleteDormRegistration } = require('./controllers/dorm.controller');
 const { getServiceRegistrations, acceptServiceRegistration, rejectServiceRegistration } = require('./controllers/roomService.controller');
 const { getRooms, createRoom, updateRoom, deleteRoom } = require('./controllers/room.controller');
-const { getNotifications, createNotification } = require('./controllers/notification.controller');
+const { getNotifications, createNotification, deleteNotification } = require('./controllers/notification.controller');
 
 
 const router = express.Router();
@@ -38,5 +38,6 @@ router.put('/service-registrations/:regId/reject', verifyJWT_MW, requireRoles(['
 
 router.get('/notifications', verifyJWT_MW, getNotifications);
 router.post('/notifications', verifyJWT_MW, requireRoles(['admin']), createNotification);
+router.delete('/notifications/:notificationId', verifyJWT_MW, requireRoles(['admin']), deleteNotification);
 
 module.exports = router;

@@ -41,9 +41,9 @@ const getNotifications = async (req, res) => {
 
 const updateNotification = async (req, res) => {
   try {
-    const { notification_id } = req.params;
+    const { notificationId } = req.params;
 
-    const notification = await Notification.findByIdAndUpdate(notification_id, { ...req.body }).exec();
+    const notification = await Notification.findByIdAndUpdate(notificationId, { ...req.body }).exec();
 
     return res.status(200).json({ status: '200', message: 'Update notification successfully', data: notification });
   } catch (e) {
@@ -56,9 +56,9 @@ const updateNotification = async (req, res) => {
 
 const deleteNotification = async (req, res) => {
   try {
-    const { notification_id } = req.params;
+    const { notificationId } = req.params;
 
-    await Notification.findByIdAndDelete(notification_id).exec();
+    await Notification.findByIdAndDelete(notificationId).exec();
 
     return res.status(200).json({ status: '200', message: 'Delete notification successfully' });
   } catch (e) {

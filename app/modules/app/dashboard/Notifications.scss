@@ -4,6 +4,14 @@
   padding: 15px 10px;
   border-bottom: 1px solid #cacaca;
   margin-right: 40px;
+  position: relative;
+
+  &:hover {
+    .deleteNoti {
+      opacity: 1;
+    }
+  }
+
   &:last-of-type {
     border-bottom: none;
   }
@@ -32,4 +40,13 @@
   font-weight: 500;
   font-size: 16px;
   margin-bottom: 10px;
+}
+
+.deleteNoti {
+  position: absolute;
+  right: 0;
+  top: 0;
+  width: 36px;
+  height: 36px;
+  opacity: 0.2;
 }

@@ -10,3 +10,8 @@ export const addNotication = async (data) => {
   const result = await Request.post(ENDPOINT_NOTIFICATIONS, data);
   return result;
 };
+
+export const deleteNotication = async (id) => {
+  const result = await Request.delete(`${ENDPOINT_NOTIFICATIONS}/${id}`);
+  return result;
+};
