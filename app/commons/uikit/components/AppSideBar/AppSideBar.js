@@ -55,16 +55,20 @@ const NAV_ITEMS = [
     path: '/app/users',
     icon: 'people',
     roles: ['admin'],
-    items: [
-      {
-        label: 'List users',
-        path: '/app/users',
-      },
-      {
-        label: 'Add a product',
-        path: '/app/users/add',
-      },
-    ],
+  },
+  {
+    key: 'feedback',
+    label: 'Đóng góp ý kiến',
+    path: '/app/feedback',
+    icon: 'feedback',
+    roles: ['student'],
+  },
+  {
+    key: 'suggestions',
+    label: 'Gợi ý khu trọ',
+    path: '/app/suggestions',
+    icon: 'room',
+    roles: ['student'],
   },
 ];
 

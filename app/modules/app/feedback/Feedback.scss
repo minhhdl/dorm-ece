@@ -1,0 +1,35 @@
+@import '../../../commons/uikit/components/variables.scss';
+
+.notification {
+  padding: 15px 10px;
+  border-bottom: 1px solid #cacaca;
+  margin-right: 40px;
+  &:last-of-type {
+    border-bottom: none;
+  }
+
+  a {
+    font-weight: 500;
+    color: $color-main;
+  }
+}
+
+.notificationNew {
+  background-color: rgba($color-main-light, 0.1);
+}
+
+.notificationContent {
+  margin-bottom: 10px;
+}
+
+.notificationTime {
+  font-size: 14px;
+  font-style: italic;
+  text-align: right;
+}
+
+.notificationTitle {
+  font-weight: 500;
+  font-size: 16px;
+  margin-bottom: 10px;
+}
