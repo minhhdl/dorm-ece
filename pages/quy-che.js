@@ -1,0 +1,1 @@
+export { QuyChe as default } from '../app/modules/index';

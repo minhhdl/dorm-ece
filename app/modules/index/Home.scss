@@ -63,6 +63,17 @@
   display: none;
 }
 
+.contentPage {
+  white-space: pre-line;
+  line-height: 1.5;
+  h3 {
+    font-weight: 500;
+    font-size: 22px;
+    margin-top: 20px;
+    margin-bottom: 30px;
+  }
+}
+
 @media screen and (max-width: 768px) {
   .showXs {
     display: flex;

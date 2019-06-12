@@ -1,0 +1,1 @@
+export { GopY as default } from '../app/modules/index';

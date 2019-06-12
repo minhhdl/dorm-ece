@@ -17,7 +17,7 @@ class Home extends React.Component {
           <Col md={3}>
             <ul className={s.sideMenu}>
               <li className={s.menuDivider}>
-                <a href="#">
+                <a href="/">
                   Trang chủ
                 </a>
               </li>
@@ -27,16 +27,16 @@ class Home extends React.Component {
                 </a>
               </li>
               <li className={s.menuItem}>
-                <a href="#">Giới thiệu KTX</a>
+                <a href="/gioi-thieu">Giới thiệu KTX</a>
               </li>
               <li className={s.menuItem}>
-                <a href="#">Sơ đồ tổ chức</a>
+                <a href="/so-do-to-chuc">Sơ đồ tổ chức</a>
               </li>
               <li className={s.menuItem}>
-                <a href="#">Ban giám đốc</a>
+                <a href="/ban-giam-doc">Ban giám đốc</a>
               </li>
               <li className={s.menuDivider}>
-                <a href="#">
+                <a href="/quy-che">
                   Quy chế - Quy định
                 </a>
               </li>
@@ -46,13 +46,13 @@ class Home extends React.Component {
                 </a>
               </li>
               <li className={s.menuItem}>
-                <a href="#">Bảng giá phòng ở</a>
+                <a href="/bang-gia-phong">Bảng giá phòng ở</a>
               </li>
               <li className={s.menuItem}>
-                <a href="#">Bảng giá dịch vụ</a>
+                <a href="/bang-gia-dich-vu">Bảng giá dịch vụ</a>
               </li>
               <li className={s.menuDivider}>
-                <a href="#">Góp ý</a>
+                <a href="/gop-y">Góp ý</a>
               </li>
             </ul>
           </Col>

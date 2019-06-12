@@ -1,0 +1,1 @@
+export { SoDo as default } from '../app/modules/index';

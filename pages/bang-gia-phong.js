@@ -1,0 +1,1 @@
+export { BangGiaPhong as default } from '../app/modules/index';
